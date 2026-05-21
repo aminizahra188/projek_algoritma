@@ -114,6 +114,64 @@ void hapusFilm() {
     cout << "\nFilm berhasil dihapus!\n";
 }
 
+void cariFilm(){
+    if(awal == NULL){
+        cout << "\nData film kosong!\n";
+        return;
+    }
+
+    string cari;
+
+    cout << "\nMasukkan judul film : ";
+    cin.ignore();
+    getline(cin, cari);
+
+    Film* bantu = awal;
+    bool ditemukan = false;
+
+    while(bantu != NULL){
+        if(bantu->judul == cari){
+            cout << "\nFilm ditemukan!\n";
+            cout << "Judul : " << bantu->judul << endl;
+            cout << "Genre : " << bantu->genre << endl;
+            cout << "Rating : " << bantu->rating << endl;
+            ditemukan = true;
+        }
+        bantu = bantu->next;
+    }
+
+    if(!ditemukan){
+        cout << "\nFilm tidak ditemukan!\n";
+    }
+
+}
+
+void sortRate(){
+    if(awal == NULL){
+        return;
+    }
+
+    bool tukar;
+    do{
+        tukar = false;
+        Film* bantu = awal;
+
+        while(bantu->next != NULL){
+            if(bantu->rating < bantu->next->rating){
+                swap(bantu->judul, bantu->next->judul);
+                swap(bantu->genre, bantu->next->genre);
+                swap(bantu->rating, bantu->next->rating);
+                tukar = true;
+            }
+
+            bantu = bantu->next;
+        }
+
+    }while(tukar);
+    cout << "\nData berhasil diurutkan berdasarkan rating!\n";
+
+}
+
 // ======================================
 // SIMPAN KE FILE
 // ======================================
@@ -179,4 +237,62 @@ void loadFile() {
     }
 
     file.close();
+}
+
+int main(){
+
+loadFile();
+int pilih;
+
+do {
+    cout << "\n===== MOVIE LIST =====\n";
+    cout << "1. Tambah Film\n";
+    cout << "2. Tampilkan Film\n";
+    cout << "3. Cari Film\n";
+    cout << "4. Sorting Rating\n";
+    cout << "5. Hapus Film\n";
+    cout << "6. Simpan File\n";
+    cout << "0. Keluar\n";
+    cout << "Pilih menu : ";
+    cin >> pilih;
+
+    switch(pilih){
+        case 1:
+        tambahFilm();
+        break;
+
+        case 2:
+        tampilFilm();
+        break;
+
+        case 3:
+        cariFilm();
+        break;
+
+        case 4:
+        sortRate();
+        break;
+
+        case 5:
+        hapusFilm();
+        break;
+
+        case 6:
+        saveFile();
+        break;
+
+        case 0:
+        saveFile();
+        cout << "\nProgram selesai\n";
+        break;
+
+        default:
+        cout << "\nMenu tidak tersedia!\n";
+
+    }
+
+   }while (pilih != 0);
+
+   return 0;
+
 }
