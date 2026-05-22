@@ -258,26 +258,25 @@ void sortRate() {
     Film* tampil = awal;
     int no = 1;
 
-    cout << "===================================================================\n";
+    cout << "====================================================\n";
     cout << setw(5)  << "No"
-         << setw(30) << "Judul Film"
-         << setw(20) << "Genre"
-         << setw(10) << "Rating" << endl;
-
-    cout << "===================================================================\n";
+         << setw(15) << "Judul Film"
+         << setw(15) << "Genre"
+         << setw(15) << "Rating" << endl;
+    cout << "====================================================\n";
 
     while (tampil != NULL) {
 
         cout << setw(5)  << no++
-             << setw(30) << tampil->judul
-             << setw(20) << tampil->genre
-             << setw(10) << tampil->rating
+             << setw(15) << tampil->judul
+             << setw(15) << tampil->genre
+             << setw(15) << tampil->rating
              << endl;
 
         tampil = tampil->next;
     }
 
-    cout << "===================================================================\n";
+    cout << "====================================================\n";
 
     pause();
     cls();
@@ -450,52 +449,51 @@ int main() {
 
         switch (pilih) {
 
-            case 1:
-                tambahFilm();
-                break;
+        case 1:
+        tambahFilm();
+        break;
 
-            case 2:
-                tampilFilm();
-                break;
+        case 2:
+        tampilFilm();
+        break;
 
-            case 3:
-                cariFilm();
-                break;
+        case 3:
+        cariFilm();
+        break;
 
-            case 4:
-                sortRate();
-                break;
+        case 4:
+        sortRate();
+        break;
 
-            case 5:
-                hapusFilm();
-                break;
+        case 5:
+        hapusFilm();
+        break;
 
-            case 6:
+        case 6:
+        saveFile();
 
-                saveFile();
+        cout << "\n[SUCCESS] Data berhasil disimpan!\n";
 
-                cout << "\n[SUCCESS] Data berhasil disimpan!\n";
+        pause();
+        break;
 
-                pause();
-                break;
+        case 0:
 
-            case 0:
+        saveFile();
 
-                saveFile();
+        cls();
 
-                cls();
+        cout << "=========================================\n";
+        cout << "        PROGRAM TELAH SELESAI            \n";
+        cout << "=========================================\n";
 
-                cout << "=========================================\n";
-                cout << "        PROGRAM TELAH SELESAI            \n";
-                cout << "=========================================\n";
+        break;
 
-                break;
+        default:
 
-            default:
+        cout << "\n[WARNING] Menu tidak tersedia!\n";
 
-                cout << "\n[WARNING] Menu tidak tersedia!\n";
-
-                pause();
+        pause();
         }
 
     } while (pilih != 0);
